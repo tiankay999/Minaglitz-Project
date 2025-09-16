@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="app.css">
+    <title>Book Appointment | MinaGlitzy</title>
+   
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">MinaGlitzy</div>
+        <div class="nav-links" id="navLinks">
+            <i class="fas fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="../HOME/Dashboard.html">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Collections</a></li>
+                <li><a href="../aboutus.html">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <i class="fas fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <main class="appointment-container">
+        <h1 class="section-title">Our Services</h1>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://orane.com/wp-content/uploads/2020/04/99.-Best-Beauty-Academy-scaled-1-1568x1046.jpg" alt="Full Face Makeup">
+                </div>
+                <div class="service-details">
+                    <h3>Full Face Makeup</h3>
+                    <p class="price">$120</p>
+                    <p class="duration">Duration: 2 hours</p>
+                    <button class="book-btn" onclick="openBookingModal('Full Face Makeup', 120)">Book Now</button>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://i.pinimg.com/1200x/2c/1f/28/2c1f28be455e78c71df7c2b5fe402ef8.jpg" alt="Hair Styling">
+                </div>
+                <div class="service-details">
+                    <h3> All Types of  Braids </h3>
+                    <p class="price">$80</p>
+                    <p class="duration">Duration: 1.5 hours</p>
+                    <button class="book-btn" onclick="openBookingModal('Hair Styling', 80)">Book Now</button>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://junebugweddings.com/wedding-blog/wp-content/uploads/2018/09/bridal-makeup-trends-5.jpg" alt="Bridal Package">
+                </div>
+                <div class="service-details">
+                    <h3>Bridal Package</h3>
+                    <p class="price">$250</p>
+                    <p class="duration">Duration: 4 hours</p>
+                    <button class="book-btn" onclick="openBookingModal('Bridal Package', 250)">Book Now</button>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://i.pinimg.com/1200x/3d/ce/ab/3dceabeaa8f35c10e0cbf3acaf06e0f6.jpg" alt="Spa Treatment">
+                </div>
+                <div class="service-details">
+                    <h3>Manicure & Pedicure </h3>
+                    <p class="price">$180</p>
+                    <p class="duration">Duration: 2.5 hours</p>
+                    <button class="book-btn" onclick="openBookingModal('Luxury Spa', 180)">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Book Your Appointment</h2>
+            <form id="bookingForm">
+                <input type="hidden" id="serviceType" name="serviceType">
+                <input type="hidden" id="servicePrice" name="servicePrice">
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="appointmentDate">Appointment Date</label>
+                    <input type="date" id="appointmentDate" name="appointmentDate" min="" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="appointmentTime">Appointment Time</label>
+                    <select id="appointmentTime" name="appointmentTime" required>
+                        <option value="">Select a time</option>
+                        <option value="09:00">9:00 AM</option>
+                        <option value="10:30">10:30 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="15:30">3:30 PM</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specialRequests">Special Requests</label>
+                    <textarea id="specialRequests" name="specialRequests" rows="3"></textarea>
+                </div>
+                
+                <div class="payment-summary">
+                    <h3>Payment Summary</h3>
+                    <div class="price-details">
+                        <p>Service: <span id="serviceNameDisplay"></span></p>
+                        <p>Price: $<span id="priceDisplay"></span></p>
+                        <p class="total">Total: $<span id="totalDisplay"></span></p>
+                    </div>
+                </div>
+                
+                <div class="payment-method">
+                    <h3>Payment Method</h3>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="card" checked>
+                            <i class="fas fa-credit-card"></i> Credit/Debit Card
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="paypal">
+                            <i class="fab fa-cc-paypal"></i> PayPal
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Confirm Booking & Pay</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const nav_Links = document.getElementById("navLinks");
+        
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+
+        // Modal Functions
+        const modal = document.getElementById('bookingModal');
+        
+        function openBookingModal(serviceName, price) {
+            document.getElementById('serviceType').value = serviceName;
+            document.getElementById('servicePrice').value = price;
+            document.getElementById('serviceNameDisplay').textContent = serviceName;
+            document.getElementById('priceDisplay').textContent = price;
+            document.getElementById('totalDisplay').textContent = price;
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('appointmentDate').min = today;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.getElementById('bookingForm').reset();
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            // and process the payment
+            
+            alert('Your appointment has been booked successfully! We will contact you shortly to confirm.');
+            closeModal();
+        });
+    </script>
+</body>
+</html>
+
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const navLinks = document.getElementById("navLinks");
+        
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+</body>
+</html>
