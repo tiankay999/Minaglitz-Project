@@ -559,3 +559,40 @@ body {
         padding: 0 15px;
     }
 }
+
+.navbar{
+    background:#000000;
+    margin:0;
+    padding:30px;
+    display:flex;
+    justify-content:space-between;
+}
+ .navbar a{
+    color:#F7E7CE;
+    text-decoration:none;
+    padding:14px 20px;
+    font-size:18px;
+    display:flex;
+    align-items:center;
+}
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+.crown{
+    font-size:40px;
+    margin-right:8px;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 4px;
+    margin-left: 90px;
+    
+}
+
+.fas.fa-crown{
+    color: #c2a920;
+    align-items: center ;
+    justify-content: start;
+}
+   
