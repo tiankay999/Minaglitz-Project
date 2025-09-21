@@ -8,6 +8,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="cart.css">
     <link script src="Dashboard.js"></script>
+    <link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
 </head>
 <body>
     <nav class="navbar">
@@ -20,10 +28,10 @@
             </div>
             <div class="navbar-center">
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="Dashboard.html">Home</a></li>
+                    <li><a href="showmore.html">Shop</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="/Book Appointments/appointments.html">Services</a></li>
                 </ul>
             </div>
             <div class="navbar-right">
@@ -136,7 +144,7 @@
                     </div>
                     <div class="product-info">
                         <h4>Human Wig </h4>
-                        <p class="price">  <s>&nbsp;&nbsp;¢900  </s>    ¢720  </p>
+                        <p class="price">  <s>&nbsp;¢900  </s>    ¢720  </p>
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
@@ -212,7 +220,8 @@
                     </div>
                     <div class="product-info">
                         <h4>Brown Afro Curly Hair </h4>
-                        <p class="price"> <span class="original-price">/wig</span></p>
+                        <p class="price"> <span class="original-price"> </span></p>
+                         <p class="price">  ¢399</p>
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
@@ -257,7 +266,7 @@
                     </div>
                     <div class="product-info">
                         <h4>Epic Cosplay Wig (Green)</h4>
-                        <p class="price">$75.9</p>
+                        <p class="price">  ¢750.9</p>
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
@@ -302,7 +311,7 @@
                     </div>
                     <div class="product-info">
                         <h4>Wavy Dense Wig</h4>
-                        <p class="price">$89.9 <span class="original-price">/pc</span></p>
+                        <p class="price"> ¢89.9 <span class="original-price">/pc</span></p>
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
@@ -373,6 +382,7 @@
                     <div class="laptop-mockup">
                         <img src="https://via.placeholder.com/300x200" alt="Website Preview">
                     </div>
+                    <div id="map" style="height: 400px;"></div>
             </div>
             <div class="footer-bottom">
                 <div class="footer-logo">
@@ -383,8 +393,8 @@
                 <div class="footer-social">
                     <div class="social-links">
                         <a href="https://www.instagram.com/mina_glitzy/?hl=en"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://web.facebook.com/minaglitzy/?_rdc=1&_rdr#"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/0591176636"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 <div class="footer-contact">
@@ -397,5 +407,26 @@
         </div>
     </footer>
     <script src="cart.js"></script>
+    <script>
+
+  // Coordinates for your shop
+  const shopLat = 5.681446;   // Madina
+  const shopLng = -0.160410;
+
+  const map = L.map('map').setView([shopLat, shopLng], 15);
+
+  // OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Marker + popup
+  L.marker([shopLat, shopLng]).addTo(map)
+    .bindPopup('<b>Our Shop</b><br>MinaGlitzy')
+    .openPopup();
+
+
+    </script>
 </body>
 </html>
